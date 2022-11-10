@@ -1746,30 +1746,6 @@ border-radius: 0px;
 <div id="field-data" class="section level3">
 <h3>Field data</h3>
 <p>Field data with metadata feedback.</p>
-<pre class="r"><code>library(tidyverse)
-library(knitr)
-library(kableExtra)
-
-#read in data
-field &lt;- read_csv(&quot;data/2022/field.csv&quot;)
-field &lt;- field %&gt;% 
-  select(ID, 10:14, notes)
-
-#calculate totals for work
-field &lt;- field %&gt;%
-  mutate(total = (rowSums(.[2:6], na.rm=TRUE)))
-
-#tidy up columns and prep unique ID
-field &lt;- field %&gt;%
-  mutate(ID = str_sub(ID, start = -5)) %&gt;%
-  select(ID, everything()) 
-
-#table of feedback
-field %&gt;% 
-  arrange(ID) %&gt;% 
-  select(-notes) %&gt;% 
-  knitr::kable() %&gt;%
-  kable_styling(&quot;striped&quot;)</code></pre>
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -2512,11 +2488,6 @@ NA
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>field %&gt;% 
-  arrange(ID) %&gt;% 
-  select(ID, notes) %&gt;% 
-  knitr::kable() %&gt;%
-  kable_styling(&quot;striped&quot;)</code></pre>
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -2880,17 +2851,6 @@ individuals and percentage in frequency.
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>#mean and mode
-meanwork &lt;- mean(field$total)
-#meanwork
-
-getmode &lt;- function(x) {
-   uniqv &lt;- unique(x)
-   uniqv[which.max(tabulate(match(x, uniqv)))]
-}
-
-modework &lt;- getmode(field$total)
-#modework</code></pre>
 </div>
 <div id="test" class="section level3">
 <h3>Test</h3>
@@ -4818,6 +4778,1756 @@ principle, control versus additional infrastructure, in fig 2 why sample
 scientific report.</p>
 <p><strong>reminder: ID is the final 5 digits in student
 ID.</strong></p>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+ID
+</th>
+<th style="text-align:right;">
+title_abstract_5
+</th>
+<th style="text-align:right;">
+intro_5
+</th>
+<th style="text-align:right;">
+methods_5
+</th>
+<th style="text-align:right;">
+results_5
+</th>
+<th style="text-align:right;">
+discussion_5
+</th>
+<th style="text-align:right;">
+lit_0
+</th>
+<th style="text-align:right;">
+figure_legend_2
+</th>
+<th style="text-align:right;">
+figure_3
+</th>
+<th style="text-align:right;">
+total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+03868
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+22
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+12403
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+15218
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+18
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+21385
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+22688
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+22912
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+23535
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+35574
+</td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+35929
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+19
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+36953
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+22
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+42878
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+43595
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+47637
+</td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+48140
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+18
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+49314
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+49426
+</td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+53929
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+18
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+56604
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+61853
+</td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+70756
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+71584
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+72100
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+22
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+74480
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+24
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+75026
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+83637
+</td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+<ul>
+<li></td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+85938
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+28
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+89210
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+90033
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+93116
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+94480
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+97681
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+20
+</td>
+</tr>
+</tbody>
+</table></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+ID
+</th>
+<th style="text-align:left;">
+comments
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+03868
+</td>
+<td style="text-align:left;">
+The abstract is well written however including a portion pertaining to
+the implications of the findings (even one sentence worth) would benefit
+this section. The introduction does a good job at setting up the scope
+of the study while also providing meaningful background, outlines the
+purpose of the study and the hypothesis. However, there are several
+sections with grammatical, spelling, and structural errors. In addition,
+towards the end of the section it seems that you state the results of
+the study. You should not be doing that in the introduction. The methods
+do a good job at outlining the steps taken to conduct the study. There
+are some components that could be excluded or are not needed in the
+methodology. As well, being more concise and direct with the methods
+would be beneficial. Reference to the figures should be made in the
+results section so the reader can connect the findings of the study with
+both the statistics and figures. Some of the provided information in the
+results can be either excluded or made more concise. No figure table
+provided. The provided figure is well constructed and displays
+meaningful information. The discussion contains good rational for
+findings along with examples and references. The one critique for this
+section is that the writing can be much more direct and to the point.
+This discussion section is fairly long and can be reduced to better
+convey the writer’s points. Well done!
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+12403
+</td>
+<td style="text-align:left;">
+The abstract should not contain citations to other literature. You also
+mention that you conduct a meta-analysis to test this however that is
+not the case. The abstract is also missing some details key to outlining
+the experiment. Several sections within in the introduction require
+citations. Some of the definitions for key terms you provide do not have
+citations. You include the methods within your introduction? The
+introduction can be made much more concise and direct with both the
+wording and connection to the experiment. Several sections contain both
+spelling and grammatical errors. The hypothesis also needs much work.
+Some format errors within the methods including style and grammatical
+errors. The methods need to be made clearer as some areas are confusing.
+There is some vague wording with the data analysis portion. Some steps
+in the methods are repeated several times. While the results state that
+the data was significant and present a p-value, the rest of the written
+portion is confusing and needs much more work for clarity. There also
+seems to be a header for table 2 placed at the end of the results with
+no main context. The presented figure legend is not formatted correctly.
+The table titles should be above the titles and should be more
+informative that what is currently presented. Several grammatical errors
+within the discussion and sentences that do not make sense. While there
+is some connection to other peer-reviewed work to explain the results,
+it seems that this is only briefly discussed. In addition, much of the
+discussion can be shortened and reworded to be much more direct and
+concise.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+15218
+</td>
+<td style="text-align:left;">
+The abstract is fairly short with little overview of the experiment. You
+should briefly state if the findings were significant and the
+implications. Several sections within the intro need citations! Some of
+the provided in-text citations are incorrect. The introduction provides
+a large amount of background and insight into several different topics
+related to the study. I suggest trying to make this more concise to
+better flow with the rest of the study. Methods have some spelling and
+grammatical errors throughout. How big was the quadrat used Love that
+you gave some of the species observed. The methods are well done but can
+be made clearer, see some peer-reviewed articles for some examples. As
+well, the type of statistical test should be included here in the
+methods. Some of the figure axes are unlabeled. It is also unclear what
+variable/factor is on which axes. For example figure 1, what is the
+x-axis? No table title in the presented table. There was also no figure
+legend provided. The references to figures and tables are very vague.
+You stated “this figure” however there are several figures. Which one
+are you referring to? You reference which species was most commonly
+observed but how do you know that? Did you test this or provide a figure
+for it? There is also no reference to statistical tests within the
+results and no p-values provided. Several areas in the discussion need
+proper citations and the few that are there do not follow proper format
+(Name, Year). However the discussion does a good job at summarizing the
+findings of the study while connecting to implications. Assuming that
+the figures of the quadrats at the end are supposed to be for the
+“figure legend” but this is not what is meant by this section of the
+assignment.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+21385
+</td>
+<td style="text-align:left;">
+Abstract is well-written but contains some vague statements that should
+be further expanded. The finding is also confusing, like “caffeine does
+not effect plant growth…but does it influence rates How did you measure
+plant growth, intro does not say. Materials and methods is good but does
+not mention the specific dates of the experiment. Stats tables need a
+caption for each table. Results texts needs to dig deeper into the
+trends, although they are discussed it is too brief. Discussion was
+good.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+22688
+</td>
+<td style="text-align:left;">
+Very late. The abstract does a good job at summarizing the main portions
+of the experiment however, a bit of information pertaining to the
+methods used as well as a bit more on why you saw the results. The
+introduction does a good job at outlining some of the main information
+and background associated with the experiment however this can be
+further elaborated. The methods within this study are very well
+articulated and presented. All relevant information, variables,
+measures, practices, and statistical tests are outlined properly. No
+figure legend provided. Some of the figure headers should be denoted as
+table headers such as “figure 4”. The results are well articulated and
+presented. The one main critique is that direct reference to p-values
+should be made when stating if the data was significant. There were no
+citations provided within the discussion. One informal citation is made
+with no date provided. The discussion can be further improved upon with
+a stronger connection being made to other peer-reviewed studies
+published. Figure title should only be below the figure not above.
+Remove the title above the figure in figure 5. The figure title for
+figure 5 is somewhat general.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+22912
+</td>
+<td style="text-align:left;">
+very late. Abstract should not include citations, it should be a general
+summary of the experiment including background, hypothesis, methods,
+results and implications. Much of the abstract is written as a portion
+of the introduction. This area should be much more concise. The
+background provided in the introduction can be more informative. The
+hypothesis provided can be much clearer and direct. Study sites are
+somewhat mentioned in the methods however it is very general and
+non-specific. There are considerable details missing within the methods
+including; duration of observations, location of study, measured
+variables, and other factors. From the missing information, the
+experiment would not be replicable. Raw data should not be provided as a
+table in submission. There should be no title above the figure, only
+figure title below the figure. The figure title is somewhat general.
+There are no statistical tests provided to support any of the results or
+work done in this experiment. The results drawn from the data cannot be
+supported. The analysis of the results is fairly general and
+uninformative. The provided discussion very briefly covers the
+implications/rational behind the study, providing limited insight into
+why the results were acquired. Some of the citations used in this
+submission are NOT peer-reviewed. Much more work is needed to make the
+discussion clearer, concise and relevant to the experiment.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+23535
+</td>
+<td style="text-align:left;">
+Abstract is well-written but lacks implications and big picture ideas.
+Introduction give as good background but lacks development of the
+hypothesis and predictions. You don’t need to say the units of the
+coordinates in methods. Why did you decide that a two-tailed ANOVA was
+good for your data? One citation to the literature in this regard would
+have been nice. Re-state the hypothesis and predictions. There are
+multiple font types in the manuscript - Work on formatting please.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+35574
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+</tr>
+<tr>
+<td style="text-align:left;">
+35929
+</td>
+<td style="text-align:left;">
+No marks off but generally do not use citations in the abstract. Your
+abstract does not have a hypothesis or predictions. I like how you
+listed the keywords. Your introductions paragraph formatting is awkward.
+You wrote your hypothesis as a prediction. Your hypothesis should have
+been “Bird size is determinant of flying frequency under certain weather
+conditions.” What statistical tests did you use to analyze your data? No
+location coordinates are provided. Would have been nice to give the
+latin binomial name of the listed species in the methods. Results
+provide frequency measures but does not discuss statistical trends and
+provide statistical values. Please don’t use square brackets for
+citations. Your discussion needs to dig deeper into the findings and why
+you saw what you saw. You need to pull more from the published
+literature. Frequency bar graph should have CI bars.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+36953
+</td>
+<td style="text-align:left;">
+The implications of your research in the abstracts are unclear. Wording
+of your introduction is confusing somewhat contrast to the hypothesis,
+specially towards the end. Please write predictions in sentence format.
+When and where was the study done? Did you run a transact and
+systematically chose the quadrats More detail needed. Results text is
+good. Figure should have used different colours for low, medium, and
+high disturbance.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+42878
+</td>
+<td style="text-align:left;">
+Abstract is good but too long. It would be nice if it contain some
+statistical information in regards to your results. One line for
+implications of your research in the abstract please. Why is the entire
+manuscript bolded? No citations in the intro. The introduction should be
+on of the sections where your reference your background information
+using citations. The introduction is too long because it contains
+unnecessary information that should have been part of your methods. This
+includes things such as the location of the study, the stats etc.. You
+are writing for a scientific audience, you do not need to explain what a
+Type I and II error are. Methods should all be sentence format,
+including the coordinates. Should be et. al not et al. Results are good,
+could be more concise. Work on wording in discussion, we do not “prove”
+in science. Figures do not need a title when they have caption.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+43595
+</td>
+<td style="text-align:left;">
+The abstract is well written however it can be more concise and to the
+point. In addition, you can restructure some areas of the abstract to
+flow better. For example, you should put the methods used for the
+experiment before the findings. The introduction provided give ample
+background pertaining to the study while providing a clear hypothesis
+and predictions. Within the methods, the study site sub section can be
+further elaborated on. What is the area like? Most common species? Etc.
+The rest of the methods are well written and allow for replication. The
+results provide meaningful insight into the findings of the study while
+referencing both the figures and statistical tests. A bit of work can be
+beneficial in this area to be more concise with the report findings but
+overall it is well done. Figures include all units. Figure titles could
+be more informative rather just saying “comparison between variable X
+and Y”. In addition, the figure titles at the top of each figure should
+be removed. The discussion is meaningful with excellent connection with
+other peer-reviewed work. Well done!
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+47637
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+</tr>
+<tr>
+<td style="text-align:left;">
+48140
+</td>
+<td style="text-align:left;">
+very late. Abstract is confusing…Im not sure if you are looking at
+species richness differences, feeding behaviour or habitat
+association…..What is your hypothesis? What are your predictions? Work
+on being more coherent with your ideas. Introduction has 0 citations for
+the background. You discussed the landscape a lot but did not provide
+much detail about the wildlife of these park. The hypothesis and
+predictions should be in the intro not the methods. Please do not
+provide the null hypothesis because you are writing for a scientific
+audience and they can figure it out. You gave no predictions. Table
+captions are vague and need a better description. Methods should all be
+written in paragraph format no point forms. What are the lat long
+coordinates for these two parks? Give a brief rationale for why you
+chose the F and t-tests. You basically gave us raw data for the two
+tables which we said should not be included in the final lab report. A
+bar graph with CIs would have been a better choice. The discussion is
+okay but inadequate job of connecting the study to the literature. Also
+you should start by re-stating the hypothesis, objectives and prediction
+and working through your results.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+49314
+</td>
+<td style="text-align:left;">
+Abstract is good but does not say why expect to see the hypothesis
+listed aka no predictions. Coordinates of the location of study should
+generally be provided. The introduction does a nice introduction to the
+topic whilst providing the hypotheses and predictions. Methods are also
+well-written but could have benefited from sub-headings. Results text
+need to more concise. The t-value results could have been one line with
+the t-test value, df, and p-value. Overall, you need to work on
+explanations that more directs and concise. Discussion is good - Good
+use of literature. Table is good but the figure lacks confidence
+interval bars (CI). Well-done overall!
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+49426
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+</tr>
+<tr>
+<td style="text-align:left;">
+53929
+</td>
+<td style="text-align:left;">
+Abstract needs to provide more of scientific background - this is not a
+novel. There is too much information about the variables in the abstract
+which is unnecessary. Your hypothesis, predictions, and main results are
+not listed… I don’t know what the alternative hypothesis was so be
+explicit. You don’t need to say where the t-test was done in the
+abstract. Awkward paragraph formatting in the introduction. The language
+is too flowery, please work on being concise and to the point.
+Hypotheses and predictions should be paragraph format. You only need to
+list the alternative hypothesis and prediction. Methods is not a
+procedure, everything needs to be in sentence format, no point forms.
+Where was the data collected? What were the specific dates of the study?
+You gave raw data although we said no raw data. Results are okay but
+again please no point forms, all of it should be sentences. Discussion
+is very weak. You did not go into details trying to analyze your
+observations one at a time. One sentence with one citation is not
+adequate amount of detail for a rationale behind observations of a
+study. Frequency table is not a suitable table for the results because
+it is raw data.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+56604
+</td>
+<td style="text-align:left;">
+Abstract is informative but somewhat general with spelling and
+grammatical errors throughout. The Abstract is also fairly long for
+introducing a paper and seems more like a portion of the introduction
+than an outline of the paper itself. While the introduction does give
+some background into the study and study species (Canadian Geese and
+Mallard Ducks) it is somewhat general and can be further elaborated
+upon. In addition, several areas need more citations and several areas
+need to be edited. The methods can be further improved upon. While it is
+somewhat clear as to how the observer conducts the experiment the way in
+which the methods are explained needs further improvement. Figures
+should be labeled as Figures and not graphs. Units within the tables are
+missing from the column headers. Axes on figures need units, see figure
+3. Figure titles are fairly general and can be improved upon to provide
+more detail on figures and tables. The results can be much more specific
+and need to be edited. There are several sections that are fairly
+general. For example, “the relationship between the variables is
+inversely proportionate”. Which variables Specify. In addition, there is
+no reference to p-values, several of the tables and several of the
+figures that were provided. Again the Discussion would benefit from a
+good edit to better convey the implications of the study. Several
+sentences are somewhat generic however they do connect to the major
+findings of the study.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+61853
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+</tr>
+<tr>
+<td style="text-align:left;">
+70756
+</td>
+<td style="text-align:left;">
+Abstract is well-written. T-test should be with a small t. Background
+needs more citations. This is the place where you should reference the
+literature. Your predictions are given in statistical language. Please
+write them in plain terms. What are the coordinates of the location When
+did the study take place Citation for why you used the Simpson’s
+diversity. Where is your results text? Where you explain the trends? The
+discussion should not be the first place you give results, the
+discussion is where you interpret the results.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+71584
+</td>
+<td style="text-align:left;">
+Abstract is well written. Exclude the portion where you explain what
+variables are recorded into excel. This type of information is not
+necessarily needed here. The introduction is well written with a good
+amount of background information provided. I do suggest to include more
+references here as some statements provide key information with no
+in-text citation. Methods provide a good amount of information on study.
+For field site, I suggest including more information on the area. What
+type of ecosystem is it? What are the dominant species there, etc. The
+results are well written and illustrate the findings of the experiment.
+The major critique for this section is that a p-value should be included
+to conclude whether the findings were significant or not. The figure
+titles are descriptive and provide sufficient information. While the
+discussion does summarize the findings, and provide limitations to the
+study it would be more beneficial to further emphasize why you might
+have observed this by connecting more to currently published studies.
+You do this to an extent but furthering this more would be beneficial.
+Well done!
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+72100
+</td>
+<td style="text-align:left;">
+Very late. Abstract is good but is missing the hypothesis and
+predictions. Introduction is good but lacks a bit of organization when
+it comes to the ideas and the flow. There is no explicit hypotheses or
+predictions. There is some methods mixed into the introduction. What
+test did you run the calculate the significant p-values. “We determined
+the significant difference” is not good wording. Results were generally
+well-written, the grammar could use a bit of work. Discussion should
+start broad and then focus. Start by re-stating the objectivves,
+hypothesis and predictions. You need to connect the implications of your
+study to the bigger picture. Plots did not have axes titles….They are
+also blurry and hard to see. Captions were generally okay.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+74480
+</td>
+<td style="text-align:left;">
+Your abstract does not contain the hypothesis and nor the implications
+of the research/big picture connection. Start your introduction with the
+background not the objective immediaetly. Please refrain from using the
+Nature format of citation, either to APA or CSE-Name-Year. Why does
+loudness decrease foraging? Methods are well-written. Citation for the
+stats from the literature is generally a good idea. Results are good,
+study the literature more for how the report statistical tests in
+brackets. The table is fine but should have a give a linear regression
+plot for the reader or at least the points with a correlation line of
+best fit plot.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+75026
+</td>
+<td style="text-align:left;">
+The title of the study is fine however the abstract is extremely
+general, and does not follow the typical format of an abstract. Please
+check a peer-reviewed paper for examples of Abstracts. The background
+provided in the introduction is somewhat general and geared towards the
+field of ecology as a whole and the conduction of field work rather than
+the specifics of the study itself. It would be more beneficial to set up
+the framework for the study you conducted such as covering concepts of
+biodiversity. In addition, several areas can be edited for clarity,
+flow, and to better get the message across. The purpose provided in the
+introduction is extremely general. You should specify what is the
+purpose of YOUR study, not the purpose of the study if someone was
+replicating this experiment. Within the methods, you need to be more
+specific with your language and elaborate on steps. It was not until the
+first portion of the methods that I realized this was the solo survey.
+Overall the methods are fairly general and can be much more specific and
+concise. Instead of giving examples of what you record (“example you see
+10% grass”) you should specify. For example, you can say “the percent
+cover of each different individual within each 0.5mx0.5m quadrat was
+measured”. You should also be outlining what statistical tests you will
+be running in your methods since it is a method used. The figure titles
+are fairly general with limited to no meaningful explanations of the
+presented data. The tables are labeled as figures when they should be
+labeled as tables. No units are provided in any table or figure. Axes in
+some figures missing units. No figure legend was provided. The first few
+sentences of the results should be in the methods section. Makes
+reference to a table without specifying which table they are
+referencing. Refrain from using the term “as you can see”. The results
+can be much more concise and to the point to better display the findings
+of this study. Simply say, “Variable X was significant among groups
+(Figure #, p-value)”. Much of the results can be summarized or removed
+for better clarity and to be more direct. Discussion restates purpose of
+the study, good. There are several areas again that need to be edited to
+be much more concise and direct with findings. You should be furthering
+your findings by suggesting reasons as to why go got those results.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+83637
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+</tr>
+<tr>
+<td style="text-align:left;">
+85938
+</td>
+<td style="text-align:left;">
+The abstract is well written giving sufficient background while
+providing meaningful information from the results and discussion of the
+experiment. The introduction is concise and provides ample background to
+major concepts that are associated with the provided experiment. The sub
+sectioning of topics is very helpful to illustrate major ideas. The
+purposes are clear, concise, and well designed. The only minor critique
+for this section is the portion after the hypothesis, predictions, and
+questions can be a bit shorter or even moved to an earlier section of
+the introduction. The methodology is very detailed and provides ample
+information to allow for the successful replication of the experiment.
+Each variable is clearly identified and statistical test used to analyze
+the data is outlined. Results properly outline all findings of the study
+including references to figures and tables. The one critique for this
+section is that presented tables should be in order. So, if you
+reference table 1.2 first in the paper then technically that should be
+table 1.1 and so on. All figures and tables have appropriate titles,
+units, and axes. The discussion is extremely well written with no
+spelling or grammatical errors. This section accurately connects the
+findings of the study to previous work conducted while also providing
+suggestions as to why the observed observations may have occurred.
+Excellent work!
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+89210
+</td>
+<td style="text-align:left;">
+Very late. The abstract is written somewhat informally and references
+the course multiple times. You should be outlining your experiment
+specifically not the premise of the lab assignment and the course
+itself. The abstract is fairly lengthy with information not entirely
+relevent to the experiment. In addition, the abstract should be going
+over the main portions of the experiment including intro, methods,
+results and implications. This is done to some extent but is fairly
+inconcise and unclear. Several areas within the introduction require
+proper in-text citations. The scientific names of species are not in the
+proper format. More background should be provided on birds in general
+rather than sparrows specifically. The way that this introduction and
+background is formatted leads the reader to believe that this is an
+experiment pertaining to sparrows. Hypothesis should be specific to
+target species, not just birds in general. Very little detail is
+provided on the conduction of the experiment. What variables were
+collected? How long were observations? What statistical test was used.
+The way the methods are presented would not be replicable. Several
+grammatical and spelling errors throughout. Providing the raw data of
+the experiment as a main table/figure is not meaningful. The reference
+to the figure within the results is vague and can go easily missed by
+reviewer. You need to properly reference your figures (I.e: Figure 1).
+No statistical tests were used to confirm results. Spelling and
+grammatical errors throughout. the figure captions should not include
+detailed descriptions of what the data shows. Saying “birds have the
+same behaviour at observation times” should be in the results and
+statistically tested. Much of the results and discussion cannot be
+confirmed without a proper statistical analysis therefore these
+conclusions cannot be drawn. The writing in discussion can be much more
+concise. Proper format for figure legend is needed!
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+90033
+</td>
+<td style="text-align:left;">
+The abstract covers the main important details outlined in the paper
+however it is somewhat informal and can be much more concise and direct.
+Several sections within the introduction require citations for the
+information they provide (such as the first few sentences). Much more
+concise writing can benefit this section. Be more direct with background
+information. The hypothesis can be made much clearer and be more
+prevalent within the introduction. The methods require more concise and
+informative steps that were taken during the conduction of the
+experiment. Did you just measure number of plant individuals or cover as
+well? What statistical test will be used to analyze the data? No figure
+legend provided. Figures within appendix do not have figure or table
+titles. The results accurately and concisely convey the findings of the
+experiment. The method used to reference the figure needs to be fixed
+and the wording can be edited to be clearer. The discussion does a good
+job of connecting the findings of the experiment to other peer-reviewed
+literature. However, this section can be much more direct and concise
+with connecting the findings.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+93116
+</td>
+<td style="text-align:left;">
+Great abstract. Intro is good but grammar needs work. Prediction needs
+to more specific like which habitats do you think would have a higher
+versus lower abundance of geese? Would be nice to have the coordinates
+of the locations. Forgot units (9 degrees what?). You wrote the stats
+results in the methods, this should be part of your results text. In the
+methods you should just say which stats tests you did and why. Stats
+text is good and descriptive, some measures like degrees of freedom are
+missing. Your sample size explanations should be in the discussion.
+Figures do not require a a title on them, the captions are enough.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+94480
+</td>
+<td style="text-align:left;">
+Abstract is okay but has no hypothesis or prediction. It is very clear
+though. Paragraph spacing needs reformatting. Introduction is
+well-written. Roswell et al., no period after the et. When was the study
+done? Specific dates. Confusing statement “The species richness in a
+specific quadrant was not taken into account” quadrat, not quadrant,
+what was the results on if not species richness, text was super short
+you barely touched on any trends and differences in richness percent
+between the two sites. Discussion is well-written but does not provide
+big picture implications as to why your study matters. Tables are vague.
+I would have liked to see the richness breakdown instead of totals. Some
+sort of the plot would have been good. Captions need more detail. Number
+of what
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+97681
+</td>
+<td style="text-align:left;">
+The portion at the bottom of the pages stating that 2 of your
+definitions will be used interchangeable should not be included. In
+addition, you should be sticking to one of those terms not both. Be
+consistent and concise with your definitions. The abstract does a good
+job at giving a brief overview of the methods and results, however there
+should be a portion in it giving a small amount of background.
+Introduction is well done. There are several areas that need to be
+edited to be more concise or to properly get the message across. IN the
+methods you do not need to outline the steps you took to generate your
+hypothesis and predictions. Those should be stated at the end of the
+introduction not in the methods. Not sure why you are referencing a
+different course’s lab manual in your methods and references. Several
+sections of the methods can be removed to be more concise and only
+outline the necessary methods needed to run the experiment. In the
+results, the tables and figures should be presented in order. You should
+not be presenting table 3 first, or if you need to present that table
+first denote it as table 1. In addition, some of the wording is
+confusing here. Stating, “the significance between of the difference
+between the means for the forest and the field is confirmed” is somewhat
+confusing and can be better worded to explain the findings. You should
+also be stating the findings more directly here. Some of the citations
+within the discussion are NOT peer-reviewed and are not credible
+sources. You should be using reviewed articles for references. There are
+several areas that are somewhat vague and can be reworded. In addition,
+further connecting your findings to other studies or what you should
+have seen would be beneficial. No figure legend was provided. Most of
+the details pertaining to the figures and tables are good. However you
+do make references to tables within the figure headers. You should not
+be referencing other figures and tables in image headers.
+</td>
+</tr>
+</tbody>
+</table></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
 </div>
 <div id="grant-app" class="section level3">
 <h3>Grant app</h3>
